@@ -28,7 +28,7 @@ def on_startup():
 # pentru UI React pe localhost
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000", "https://frontend-production-dce1.up.railway.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
