@@ -1,0 +1,37 @@
+# Environment files
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Node dependencies
+node_modules/
+ui/node_modules/
+
+# Build folders
+dist/
+build/
+ui/dist/
+ui/build/
+
+# IDE files
+.idea/
+.vscode/
+
+# Logs
+*.log
+logs_evente.txt
+
+# Generated app exports
+*.csv
+final_order_*.txt
+
+# Optional local documents
+*.docx
+
+# local notes / docs images
+imagini documentatie/
+pasi + comenzi rulare in cmd.txt

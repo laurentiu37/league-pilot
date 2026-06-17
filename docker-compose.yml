@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: league
+      POSTGRES_PASSWORD: league
+      POSTGRES_DB: league_sim
+    ports:
+      - "5432:5432"
+    volumes:
+      - league_db_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      DATABASE_URL: postgresql+psycopg2://league:league@db:5432/league_sim
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+      args:
+        VITE_API_BASE_URL: /api
+    depends_on:
+      - api
+    ports:
+      - "5173:80"
+
+volumes:
+  league_db_data:
