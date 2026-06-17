@@ -19,9 +19,27 @@ export default function Runs() {
     return () => { cancelled = true; };
   }, []);
 
+  async function clearRuns() {
+    const confirmed = window.confirm("Sigur vrei să ștergi toate rulările?");
+    if (!confirmed) return;
+
+    await api.delete("/runs");
+    setRows([]);
+  }
+
   return (
     <div>
-      <h2>Runs</h2>
+          <h2>Runs</h2>
+          <button
+              onClick={clearRuns}
+              style={{
+                  marginBottom: 16,
+                  padding: "8px 12px",
+                  cursor: "pointer"
+              }}
+          >
+              Delete runs
+          </button>
       {err && <p style={{ color: "crimson" }}>Error: {err}</p>}
 
       <div style={{ display: "grid", gap: 8 }}>

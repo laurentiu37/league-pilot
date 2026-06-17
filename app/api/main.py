@@ -12,6 +12,7 @@ from app.infrastructure.db.database import SessionLocal, engine, Base
 from app.infrastructure.db.repository import save_run
 from app.infrastructure.db.repository_read import list_runs, get_run, get_games, get_player_avgs
 from app.api.exports import router as export_router
+from app.api import store
 
 app = FastAPI(title="League Simulator API", version="0.1")
 
@@ -187,3 +188,9 @@ def run_events_db(run_id: int):
         if not r:
             raise HTTPException(status_code=404, detail="Run not found")
         return {"run_id": run_id, "log": r.events_log}
+
+
+@app.delete("/runs")
+def clear_runs():
+    store.clear_all_runs()
+    return {"ok": True}
